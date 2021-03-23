@@ -1,0 +1,72 @@
+<nav #nav class="navbar">
+  <div class="navbar_max">
+    <div class="search-list">
+      <div class="search-list__elements">
+        <div class="overflow">
+          <table #table class="films-block__film-table">
+            <tr *ngFor="let product of products$ | async let idx = index" id="{{product.nameOriginal}}" (click)="OnChoose(product)">
+              <h3 *ngIf="idx === 0" class="search-title">Возможно, вы искали:</h3>
+              <div class="films-block__film-row">
+                <td class="films-block__film-block">
+                  <div class="films-block__film-poster">
+                    <img *ngIf="product.imageSrc" [src]="product.imageSrc" alt="poster"
+                         class="films-block__film-image">
+                  </div>
+                </td>
+                <td class="films-block__film-block-name">
+                  <span class="films-block__film-title">{{ product.name }}</span>
+                  <span class="films-block__film-titleOriginal">{{ product.nameOriginal }}</span>
+                </td>
+                <td class="films-block__film-block">
+                  <div class="films-block__film-rating">
+                    <img src="../../../../uploads/star.svg" alt="star" class="films-block__rate-icon">
+                    {{ product.rating }}
+                  </div>
+                </td>
+              </div>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isOpenSearch" class="div-search">
+      <input class="div-search__input" #search_phone (keyup)="searchProducts(search_phone.value)"
+             placeholder="Поиск...">
+      <div class="btn_search">
+        <span class="close" (click)="showSearchInput()"></span>
+      </div>
+
+    </div>
+    <div class="logo__div">
+      <div #burger (click)="openMenu()" class="burger">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
+      </div>
+      <img alt="" class="logo" src="../uploads/logo.svg">
+      <h1 class="title">КиноКлик</h1>
+    </div>
+    <div>
+      <ul #ul CLASS="link">
+        <li #li class="li" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a [routerLink]="''">Главная</a>
+        </li>
+        <li #li class="li" routerLinkActive="active">
+          <a [routerLink]="'/filmworks'">Кинопроизведения</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrapper">
+      <div class="search-box">
+        <div class="block-input">
+          <input #search (keyup)="searchProducts(search.value)" id="search" type="text" placeholder="Поиск"
+                 class="input-search-block" required>
+          <div #btn class="btn_search">
+            <span *ngIf="!isOpenSearch" (click)="showSearchInput()" class="lupa"></span>
+            <span *ngIf="isOpenSearch" class="close" (click)="showSearchInput()"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

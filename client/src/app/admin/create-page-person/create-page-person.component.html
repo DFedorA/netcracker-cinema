@@ -1,0 +1,117 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form-block">
+  <h2>Создание нового человека</h2>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('name_ru').touched && form.get('name_ru').invalid}"
+  >
+    <label for="name_ru">Имя человека на русском</label>
+    <input id="name_ru" type="text" formControlName="name_ru">
+    <div
+      *ngIf="form.get('name_ru').touched && form.get('name_ru').invalid"
+      class="validation"
+    >
+      <div *ngIf="form.get('name_ru').errors.required">
+        Введите имя
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('name_en').touched && form.get('name_en').invalid}"
+  >
+    <label for="name_en">Имя человека в оригинале</label>
+    <input id="name_en" type="text" formControlName="name_en">
+    <div
+      *ngIf="form.get('name_en').touched && form.get('name_en').invalid"
+      class="validation"
+    >
+      <div *ngIf="form.get('name_en').errors.required">
+        Введите имя
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('specialty').touched && form.get('specialty').invalid}"
+  >
+    <label for="specialty">Специальность</label>
+    <input id="specialty" type="text" formControlName="specialty">
+    <div
+      *ngIf="form.get('specialty').touched && form.get('specialty').invalid"
+      class="validation"
+    >
+      <div *ngIf="form.get('specialty').errors.required">
+        Введите специальность
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('dob').touched && form.get('dob').invalid}"
+  >
+    <label for="dob">Дата рождения</label>
+    <input id="dob" type="date" value="2017-06-01" formControlName="dob">
+    <div
+      *ngIf="form.get('dob').touched && form.get('dob').invalid"
+      class="validation"
+    >
+      <div *ngIf="form.get('dob').errors.required">
+        Введите день рождения
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-control">
+    <label>Кинопроизведения
+      <span class="multi-select">
+        <div #menu (click)="openMenu()" class="multi-select__select">
+          <span #list></span>
+          <div class="multi-select__options">
+              <div #elements *ngFor="let product of products" id="{{product._id}}" class="multi-select__option" (click)="check(product)">
+                {{product.name}}
+              </div>
+          </div>
+          <span #placeholder class="multi-select__placeholder">-Выберите кинопроизведения-</span>
+        </div>
+      </span>
+    </label>
+  </div>
+
+  <div>
+    <input
+      type="file"
+      [hidden]="!showButtonUpload"
+      (change)="onFileUpload($event)"
+      #input
+    >
+    <button class="btn"
+            (click)="triggerClick()"
+            [disabled]="form.disabled"
+            type="button"
+    >
+      Загрузить изображение
+    </button>
+  </div>
+  <div class="img-preview">
+    <img
+      class="h200"
+      [src]="imagePreview"
+      *ngIf="imagePreview"
+    >
+  </div>
+
+  <button
+    id = "submit-button"
+    type="submit"
+    class="btn"
+
+  >Добавить человека
+  </button>
+</form>
+
+<!--[disabled]="form.invalid"-->

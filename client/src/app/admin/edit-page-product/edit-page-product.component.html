@@ -1,0 +1,216 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form-block">
+  <h2>Редактирование произведения</h2>
+
+  <div
+    class="form-control-product"
+    [ngClass]="{invalid: form.get('name').touched && form.get('name').invalid}"
+  >
+    <label for="name">Наименование произведения</label>
+    <input id="name" type="text" formControlName="name" placeholder="Ведьмак">
+    <div
+      *ngIf="form.get('name').touched && form.get('name').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('name').errors.required">
+        Введите название
+      </small>
+    </div>
+  </div>
+
+  <div
+    class="form-control-product"
+    [ngClass]="{invalid: form.get('nameOriginal').touched && form.get('nameOriginal').invalid}"
+  >
+    <label for="nameOriginal">Оригинальное название</label>
+    <input id="nameOriginal" type="text" formControlName="nameOriginal" placeholder='The Witcher'>
+    <div
+      *ngIf="form.get('nameOriginal').touched && form.get('nameOriginal').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('nameOriginal').errors.required">
+        Введите название
+      </small>
+    </div>
+  </div>
+
+  <div class="form-control-product">
+    <label>Режиссёр
+      <select class="select-pure__select" #director name="director">
+        <option *ngFor="let person of persons" [value]="person._id">{{person.nameRu}}</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="form-control-product">
+    <label>Актёры
+      <span class="multi-select">
+  <div #menu (click)="openMenu()" class="multi-select__select">
+    <span #list>
+    <span class="multi-select__selected-label"
+          #elements
+          id="{{person._id}}"
+          *ngFor="let person of productPersons"
+    >
+        {{person.nameRu}}
+        <img (click)="removeChecked(person._id)" src="../../../../../uploads/icon-times.svg">
+    </span>
+    </span>
+    <div class="multi-select__options">
+      <div class="multi-select__option"
+           *ngFor="let person of persons"
+           #elementsOptions
+           name="{{person._id}}"
+           (click)="check(person)"
+      >{{person.nameRu}}
+
+      </div>
+    </div>
+<span #placeholder class="multi-select__placeholder">
+</span>
+  </div>
+</span>
+    </label>
+  </div>
+
+  <div
+    class="form-control-product"
+    [ngClass]="{invalid: form.get('type').touched && form.get('type').invalid}"
+  >
+    <label for="type">Тип произведения</label>
+    <input id="type" type="text" formControlName="type" placeholder="Сериал">
+    <div
+      *ngIf="form.get('type').touched && form.get('type').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('type').errors.required">
+        Введите тип произведения
+      </small>
+    </div>
+  </div>
+
+  <div
+    class="form-control-product"
+    [ngClass]="{invalid: form.get('rating').touched && form.get('rating').invalid}"
+  >
+    <label for="rating">Рейтинг</label>
+    <input id="rating" type="number" formControlName="rating" placeholder="9.5">
+    <div
+      *ngIf="form.get('rating').touched && form.get('rating').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('rating').errors.required">
+        Введите рейтинг
+      </small>
+    </div>
+  </div>
+
+  <div
+    class="form-control-product"
+    [ngClass]="{invalid: form.get('genre').touched && form.get('genre').invalid}"
+  >
+    <label for="genre">Жанр</label>
+    <input id="genre" type="text" formControlName="genre" placeholder='Боевик'>
+    <div
+      *ngIf="form.get('genre').touched && form.get('genre').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('genre').errors.required">
+        Введите жанр
+      </small>
+    </div>
+  </div>
+
+  <div
+    class="form-control-product"
+    [ngClass]="{invalid: form.get('country').touched && form.get('country').invalid}"
+  >
+    <label for="country">Страна производства</label>
+    <input id="country" type="text" formControlName="country" placeholder="США">
+    <div
+      *ngIf="form.get('country').touched && form.get('country').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('country').errors.required">
+        Введите страну
+      </small>
+    </div>
+  </div>
+
+  <div
+    class="form-control-product"
+    [ngClass]="{invalid: form.get('year').touched && form.get('year').invalid}"
+  >
+    <label for="year">Дата проката</label>
+    <input id="year" type="date" formControlName="year">
+    <div
+      *ngIf="form.get('year').touched && form.get('year').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('year').errors.required">
+        Введите дату
+      </small>
+    </div>
+  </div>
+
+  <div
+    class="form-control-product"
+    [ngClass]="{invalid: form.get('description').touched && form.get('description').invalid}"
+  >
+    <label for="description">Описание</label>
+    <textarea id="description" formControlName="description" placeholder="Интересный сериал"></textarea>
+    <div
+      *ngIf="form.get('description').touched && form.get('description').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('description').errors.required">
+        Введите описание
+      </small>
+    </div>
+  </div>
+
+  <div
+    class="form-control-product"
+    [ngClass]="{invalid: form.get('trailerSrc').touched && form.get('trailerSrc').invalid}"
+  >
+    <label for="trailerSrc">Трейлер</label>
+    <input id="trailerSrc" type="url" formControlName="trailerSrc" placeholder="Ссылка на трейлер">
+    <div
+      *ngIf="form.get('trailerSrc').touched && form.get('trailerSrc').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('trailerSrc').errors.required">
+        Введите ссылку
+      </small>
+    </div>
+  </div>
+
+  <div>
+    <input
+      type="file"
+      [hidden]="!showButtonUpload"
+      (change)="onFileUpload($event)"
+      #input
+    >
+    <button class="btn_product"
+            (click)="triggerClick()"
+            [disabled]="form.disabled"
+            type="button"
+    >
+      Загрузить изображение
+    </button>
+  </div>
+  <div class="img-preview">
+    <img
+      class="h200"
+      [src]="imagePreview"
+      *ngIf="imagePreview"
+    >
+  </div>
+
+  <button
+    type="submit"
+    class="btn_product"
+
+  >Обновить
+  </button>
+</form>

@@ -1,0 +1,81 @@
+<div *ngIf="persons?.length ; else loading">
+  <div class="search-person">
+    <input class="search-person__input" type="text" placeholder="Найти человека..." [(ngModel)]="searchStr">
+  </div>
+  <table class="person-table">
+    <thead class="person-table_thead">
+    <tr>
+      <th class="person-table_th">#</th>
+      <th class="person-table_th">Имя</th>
+      <th class="person-table_th">Имя в оригинале</th>
+      <th class="person-table_th">Специальность</th>
+      <th class="person-table_th">День рождение</th>
+      <th class="person-table_th">Действие</th>
+
+    </tr>
+    </thead>
+    <tbody class="person-table_tbody">
+    <tr *ngFor="let person of persons | searchPersons:searchStr; let idx = index; trackBy:trackByFn">
+      <td class="person-table_td" data-label="#">{{ idx + 1 }}</td>
+      <td class="person-table_td" data-label="Имя">{{ person.nameRu }}</td>
+      <td class="person-table_td" data-label="Имя в оригинале">{{ person.nameOriginal  }}</td>
+      <td class="person-table_td" data-label="Специальность">{{ person.specialty  }}</td>
+      <td class="person-table_td" data-label="День рождение">{{ person.dob | date:'mediumDate':null:'ru' }}</td>
+      <td class="person-table_td" data-label="Действие">
+        <button
+          class="open"
+          [routerLink]="['/admin', 'person', person._id, 'edit-person']"
+        >
+          Открыть
+        </button>
+        <a class="del" (click)="removePerson(person._id)">Удалить</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<a id="productTable" (click)="getTableProduct()">Таблица произведений</a>
+
+<div #test *ngIf="products.length && isVisible === true">
+  <div class="search-product">
+    <input class="search-product__input" type="text" placeholder="Найти произведение..." [(ngModel)]="searchStrProduct">
+  </div>
+  <table class="product-table">
+    <thead class="product-table_thead">
+    <tr>
+      <th class="product-table_th">#</th>
+      <th class="product-table_th">Название</th>
+      <th class="product-table_th">Оригинальное название</th>
+      <th class="product-table_th">Жанр</th>
+      <th class="product-table_th">Страна</th>
+      <th class="product-table_th">Тип</th>
+      <th class="product-table_th">Дата проката</th>
+      <th class="product-table_th">Рейтинг</th>
+      <th class="product-table_th">Действие</th>
+
+    </tr>
+    </thead>
+    <tbody class="product-table_tbody">
+    <tr *ngFor="let product of products | searchProducts:searchStrProduct; let idx = index; trackBy:trackByFn">
+      <td class="product-table_td" data-label="#">{{ idx + 1 }}</td>
+      <td class="product-table_td" data-label="Название">{{ product.name }}</td>
+      <td class="product-table_td" data-label="Оригинальное название">{{ product.nameOriginal }}</td>
+      <td class="product-table_td" data-label="Жанр">{{ product.genre }}</td>
+      <td class="product-table_td" data-label="Страна">{{ product.country }}</td>
+      <td class="product-table_td" data-label="Тип">{{ product.type  }}</td>
+      <td class="product-table_td" data-label="Дата проката">{{ product.year | date:'mediumDate':null:'ru' }}</td>
+      <td class="product-table_td" data-label="Рейтинг">{{ product.rating }}</td>
+      <td class="product-table_td" data-label="Действие">
+        <button class="open" [routerLink]="['/admin', 'product', product._id, 'edit-product']">Открыть</button>
+        <button class="del" (click)="removeProduct(product._id)">Удалить</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #loading>
+  <div class="loading">Идет загрузка...</div>
+</ng-template>
+

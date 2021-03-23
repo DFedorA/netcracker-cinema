@@ -1,0 +1,53 @@
+<div class="films-block">
+  <span class="films-block__title">Кинопроизведения</span>
+  <div class="films-block__body">
+    <div class="films-block__left-part">
+        <form action="" class="films-block__form">
+            <div class="films-block__form-block">
+                <span class="films-block__block-title">Тип</span>
+                <select size="1" class="films-block__select" name="type" [(ngModel)]="type">
+                    <option class="films-block__select-option" value="all" selected >Выбрать тип</option>
+                    <option class="films-block__select-option" value="Фильм">Фильмы</option>
+                    <option class="films-block__select-option" value="Сериал">Сериалы</option>
+                </select>
+            </div>
+            <div class="films-block__form-block">
+                <span class="films-block__block-title">Сортировка</span>
+                <div class="films-block__rows-block">
+                <div class="films-block__input-row">
+                    <input type="radio" name="sort"  id="radio_1" class="films-block__sorting-option" value='rating' [(ngModel)]="sort">
+                    <label  for="radio_1" class="films-block__input-label" >По рейтингу</label>
+                </div>
+                <div class="films-block__input-row">
+                    <input type="radio" name="sort"  id="radio_2"  class="films-block__sorting-option" value='name' [(ngModel)]="sort">
+                    <label for="radio_2" class="films-block__input-label">По названию</label>
+                </div>
+            </div>
+            </div>
+        </form>
+    </div>
+    <div class="films-block__right-part">
+        <table class="films-block__film-table">
+            <tr *ngFor="let product of filteredList | filtering:type| orderBy:sort" class="films-block__film-row" (click)="OnChoose(product)">
+                <td class="films-block__film-block">
+                    <div class="films-block__film-poster">
+                        <img *ngIf="product.imageSrc" [src]="product.imageSrc" alt="poster" class="films-block__film-image">
+                    </div>
+                </td>
+                <td class="films-block__film-block">
+                    <span class="films-block__film-title">{{ product.name }}</span>
+                </td>
+                <td class="films-block__film-block">
+                    <span class="films-block__film-year">{{ product.year | date: 'yyyy' }}</span>
+                </td>
+                <td class="films-block__film-block">
+                    <div class="films-block__film-rating">
+                        <img src="../../../../uploads/star.svg" alt="star" class="films-block__rate-icon">
+                        {{ product.rating }}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+  </div>
+</div>

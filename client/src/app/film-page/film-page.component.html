@@ -1,0 +1,50 @@
+<div class="film-block">
+  <div class="film-block__main-content">
+    <div class="film-block__left-part">
+      <div class="film-block__poster">
+        <img *ngIf="product.imageSrc" [src]="product.imageSrc" alt="poster" class="film-block__image">
+      </div>
+      <a data-fancybox href="{{product.trailerSrc}}" class="film-block__trailer-button">Смотреть трейлер</a>
+    </div>
+    <div class="film-block__right-part">
+      <span class="film-block__film-title">{{product.name}}</span>
+      <span class="film-block__film-subtitle">{{product.nameOriginal}}</span>
+      <div class="film-block__about-content">
+        <span class="film-block__about-title">О кинопроизведении</span>
+        <div class="film-block__about-table">
+          <div class="film-block__about-column">
+            <span class="film-block__row-title">Тип</span>
+            <span class="film-block__row-title">Год производства</span>
+            <span class="film-block__row-title">Страна</span>
+            <span class="film-block__row-title">Жанр</span>
+            <span class="film-block__row-title">Режиссер</span>
+            <span class="film-block__row-title">В главных ролях</span>
+            <span class="film-block__row-title">Рейтинг</span>
+          </div>
+          <div class="film-block__about-column">
+            <div class="film-block__row-text">{{product.type}}</div>
+            <div class="film-block__row-text">{{product.year | date: 'yyyy'}}</div>
+            <div class="film-block__row-text">{{product.country}}</div>
+            <div class="film-block__row-text">{{product.genre}}</div>
+            <div class="film-block__row-text film-block__person-text"
+                 (click)="OnChoose(director)">{{director.nameRu}}</div>
+            <div class="film-block__row-text persons-container">
+              <div *ngFor="let person of persons" class="film-block__person-text"
+                   (click)="OnChoose(person)">{{person.nameRu}}</div>
+            </div>
+            <div class="film-block__row-text">
+              <img src="../../../../uploads/star.svg" alt="" class="film-block__rate-icon">
+              {{product.rating}}<span class="film-block__small-rate">/10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="film-block__description">
+    <div class="film-block__description-title">Описание кинопроизведения</div>
+    <p class="film-block__description-text">
+      {{product.description}}
+    </p>
+  </div>
+</div>
