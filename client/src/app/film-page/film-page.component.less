@@ -1,0 +1,283 @@
+@import "src/styles";
+
+.film-block {
+  max-width: 1200px;
+
+  &__main-content {
+    margin-top: 50px;
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__left-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__poster {
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    height: 425px;
+  }
+
+  &__image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    width: 300px;
+    height: 425px;
+  }
+
+  &__trailer-button {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    text-decoration: none;
+
+    &:before {
+      content: '';
+      width: 30px;
+      height: 30px;
+      background-image: url(../../../../uploads/play.svg);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      margin-right: 15px;
+    }
+  }
+
+  &__right-part {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__film {
+    &-title {
+      margin: 0;
+      margin-bottom: 5px;
+      font-size: 32px;
+      line-height: 50px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: @main-color;
+    }
+
+    &-subtitle {
+      margin-bottom: 30px;
+      font-size: 16px;
+      line-height: 28px;
+      letter-spacing: 1px;
+      color: #646464;
+    }
+  }
+
+  &__about {
+    &-title {
+      display: block;
+      margin-bottom: 20px;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 2px;
+    }
+
+    &-table {
+      display: flex;
+    }
+
+    &-column {
+      display: flex;
+      flex-direction: column;
+
+      &:last-child {
+        margin-left: 70px;
+      }
+    }
+  }
+
+  &__row {
+    &-title {
+      margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 21px;
+      color: #A4A4A4;
+    }
+
+    &-text {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 21px;
+      color: @main-color;
+    }
+  }
+  
+  .persons-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  &__person-text {
+    margin-right: 10px;
+
+    &:hover {
+      color: #FFFFFF;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+  }
+
+  &__rate-icon {
+    margin-right: 10px;
+  }
+
+  &__small-rate {
+    align-self: flex-end;
+    font-size: 10px;
+    line-height: 14px;
+    color: #626262;
+  }
+
+  &__description {
+    &-title {
+      position: relative;
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 33px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: @main-color;
+      margin-bottom: 70px;
+      margin-left: 30px;
+
+      &:before {
+        position: absolute;
+        content: '';
+        width: 4px;
+        height: 50px;
+        background-color: @main-color;
+        top: -8px;
+        left: -30px;
+      }
+    }
+
+    &-text {
+      font-size: 16px;
+      line-height: 30px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .film-block {
+    max-width: 740px;
+
+    &__description-title {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .film-block {
+    max-width: 540px;
+    margin-bottom: 20px;
+
+    &__right-part {
+      margin-left: 50px;
+    }
+
+    &__poster {
+      width: 250px;
+      height: 375px;
+    }
+
+    &__row-text {
+      margin-bottom: 10px;
+    }
+
+    &__description-text {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media (max-width: 578px) {
+  .film-block {
+    max-width: 100%;
+
+    &__main-content {
+      margin-top: 15px;
+      margin-bottom: 30px;
+      flex-direction: column;
+    }
+
+    &__poster {
+      width: 200px;
+      height: 325px;
+    }
+
+    &__right-part {
+      margin-top: 22px;
+      margin-left: 0;
+    }
+
+    &__film {
+      &-title {
+        font-size: 24px;
+        text-align: center;
+      }
+
+      &-subtitle {
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+
+    &__about-title {
+      font-size: 17px;
+    }
+
+    &__row {
+      &-title {
+        font-size: 15px;
+      }
+
+      &-text {
+        font-size: 15px;
+        margin-bottom: 11px;
+      }
+    }
+
+    &__description {
+      padding-left: 15px;
+      max-width: 90%;
+
+      &-title {
+        font-size: 17px;
+        margin-bottom: 15px;
+
+        &:before {
+          top: 7px;
+        }
+      }
+
+      &-text {
+        font-size: 14px;
+      }
+    }
+  }
+}

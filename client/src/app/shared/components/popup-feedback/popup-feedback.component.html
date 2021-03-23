@@ -1,0 +1,42 @@
+<div #modal class="modal">
+  <div class="modal-content">
+    <span class="close close_button" (click)="close()">&times;</span>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="popup">
+      <h3 class="popup__title">Отправки отзыва</h3>
+      <div
+        class="form-control"
+        [ngClass]="{invalid: form.get('sender').touched && form.get('sender').invalid}"
+      >
+        <label for="sender" class="form-control-label__popup">Как к вам обращаться?</label>
+        <input id="sender" type="text" formControlName="sender" class="form-control-input__popup" placeholder="Ф.И.О">
+        <div
+          *ngIf="form.get('sender').touched && form.get('sender').invalid"
+          class="validation"
+        >
+          <small *ngIf="form.get('sender').errors.required">
+            Введите ваше имя
+          </small>
+        </div>
+      </div>
+
+      <div
+        class="form-control"
+        [ngClass]="{invalid: form.get('message').touched && form.get('message').invalid}"
+      >
+        <label for="message" class="form-control-label__popup">Ваш отзыв</label>
+        <textarea id="message" type="text" formControlName="message" class="form-control-text__popup"
+                  placeholder="Сообщение"></textarea>
+        <div
+          *ngIf="form.get('message').touched && form.get('message').invalid"
+          class="validation"
+        >
+          <small *ngIf="form.get('message').errors.required">
+            Введите описание отзыва
+          </small>
+        </div>
+      </div>
+
+      <button type="submit" id="submit" class="btn__popup">Отправить</button>
+    </form>
+  </div>
+</div>

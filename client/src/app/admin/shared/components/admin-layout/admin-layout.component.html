@@ -1,0 +1,27 @@
+<div class="container">
+<nav class="navbar">
+  <div class="logo">
+      <a class="logo_link" routerLink="/">
+        <img class="logo_img" src="../../uploads/logo.svg" alt="">Кино<span class="logo_span">Клик</span></a>
+  </div>
+
+  <ul class="navbar_ul" *ngIf="auth.isAuthenticated()">
+    <li class="navbar_li" routerLinkActive="active">
+      <a [routerLink]="['/admin', 'dashboard']">Главная</a>
+    </li>
+    <li class="navbar_li"  routerLinkActive="active">
+      <a [routerLink]="['/admin', 'createperson']">Добавить человека</a>
+    </li>
+    <li class="navbar_li"  routerLinkActive="active">
+      <a [routerLink]="['/admin', 'createproduct']">Добавить произведение</a>
+    </li>
+    <li class="navbar_li"  routerLinkActive="active">
+      <a [routerLink]="['/admin', 'feedback']">Список отзывов</a>
+    </li>
+    <li class="navbar_li">
+      <a href="#" (click)="logout($event)">Выйти</a>
+    </li>
+  </ul>
+</nav>
+  <router-outlet></router-outlet>
+</div>

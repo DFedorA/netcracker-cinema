@@ -1,0 +1,49 @@
+<owl-carousel-o [options]="customOptions">
+  <ng-template *ngFor="let product of productList"  carouselSlide>
+    <section class="main">
+      <div class="main__item">
+        <div class="main__item__block">
+          <div class="main__title">
+            <h2>{{ product.name }}</h2>
+          </div>
+          <div class="main__subtitle">
+            Скоро на экранах!
+          </div>
+          <div class="main__description">
+            <p>
+              {{product.description}}
+            </p>
+          </div>
+          <button class="btn main__btn" (click)="OnChoose(product)">
+            Подробнее
+          </button>
+        </div>
+      </div>
+      <div class="main__item">
+<!--        src="../../uploads/геральт.PNG"-->
+        <img *ngIf="product.imageSrc" [src]="product.imageSrc"  class="main__poster"  alt="poster">
+      </div>
+    </section>
+  </ng-template>
+</owl-carousel-o>
+
+<section class="about_us">
+  <div class="about_us__primordial">
+    <h3>Добро пожаловать</h3>
+  </div>
+  <div class="about_us__title">
+    <h3>О нашем проекте</h3>
+  </div>
+  <div class="about_us__main">
+    <div class="about_us__main__img">
+      <span class="about_us-add_block"></span>
+    </div>
+    <div class="about_us__main__text">
+      <p>
+        Здравствуйте! Мы рады видеть вас на нашем сайте, посвященном фильмам и сериал,
+        под названием “КиноКлик”. Этот сайт является учебным проектом в рамках курса компании Netcracker.
+        На данном сайте представлена информация о фильмах, сериалах, а также актерах.
+      </p>
+    </div>
+  </div>
+</section>

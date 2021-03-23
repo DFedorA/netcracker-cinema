@@ -1,0 +1,30 @@
+<div class="person-block">
+    <div class="person-block__main-content">
+        <div class="person-block__left-part">
+            <div class="person-block__photo">
+                <img *ngIf="person.imageSrc" [src]="person.imageSrc" alt="poster" class="person-block__image">
+            </div>
+        </div>
+        <div class="person-block__right-part">
+            <span class="person-block__person-title">{{person.nameRu}}</span>
+            <span class="person-block__person-subtitle">{{person.nameOriginal}}</span>
+            <div class="person-block__about-content">
+                <span class="person-block__about-title">О персоне</span>
+                <div class="person-block__about-table">
+                <div class="person-block__about-column">
+                    <span class="person-block__row-title">Специальность</span>
+                    <span class="person-block__row-title">Дата рождения</span>
+                    <span class="person-block__row-title">Проекты</span>
+                </div>
+                <div class="person-block__about-column">
+                    <div class="person-block__row-text">{{person.specialty}}</div>
+                    <div class="person-block__row-text">{{person.dob | date:'longDate':null:'ru' }}</div>
+                    <div class="person-block__row-text products-container">
+                        <div *ngFor="let product of products" class="person-block__product-text" (click)="OnChoose(product)">{{product.name}}</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

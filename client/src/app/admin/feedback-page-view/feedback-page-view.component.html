@@ -1,0 +1,30 @@
+<h3>Список отзывов</h3>
+
+<div *ngIf="feedbacks.length; else loading">
+  <table class="feedback-table">
+    <thead class="feedback-table_thead">
+    <tr>
+      <th class="feedback-table_th">#</th>
+      <th class="feedback-table_th">Отправитель</th>
+      <th class="feedback-table_th">Сообщение</th>
+      <th class="feedback-table_th">Действие</th>
+
+    </tr>
+    </thead>
+    <tbody class="feedback-table_tbody">
+    <tr *ngFor="let feedback of feedbacks let idx = index">
+      <td class="feedback-table_td"  data-label="#">{{ idx + 1 }}</td>
+      <td class="feedback-table_td"  data-label="Имя">{{feedback.sender }}</td>
+      <td class="feedback-table_td"  data-label="Имя в оригинале">{{feedback.message}}</td>
+      <td class="feedback-table_td"  data-label="Действие">
+
+        <a id="{{feedback.sender}}" (click)="remove(feedback._id)">Удалить</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #loading>
+  <div class="loading">Идет загрузка...</div>
+</ng-template>

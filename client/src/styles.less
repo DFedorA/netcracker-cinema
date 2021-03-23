@@ -1,0 +1,139 @@
+//@import url('https://fonts.googleapis.com/css?family=Roboto');
+//@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+@main-color:#47D9B6;
+@max-width: 792px;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  background-color: #0A090A;
+  color: #fff;
+}
+html,
+body{
+  height: 100%;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ul, li {
+  display: block;
+  padding: 0px;
+  margin: 0px;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+}
+
+a, a:hover, a:active, a:focus,
+button, input, button:hover, button:active, button:focus,
+input:focus, input:active {
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.form-block {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0px 10px;
+
+  .form-control,
+  .form-control-product {
+    display: block;
+    color: #888;
+    margin-bottom: .8rem;
+
+    &.invalid {
+      color: #dc3545;
+
+      input {
+        border-color: #dc3545;
+      }
+    }
+
+    .validation {
+      color: #dc3545;
+    }
+  }
+}
+
+a {
+  font-weight: 500;
+  color:#fff;
+
+  &:hover {
+    transition: 0.3s;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  padding: 10px 10px;
+}
+.main-container {
+  padding: 87px 10px;
+}
+.btn{
+  display: inline-block;
+  background: @main-color;
+  color: #fff;
+  font-weight: 700;
+  padding: 11px 68px;
+  font-size: 16px;
+  border: 1px solid @main-color;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+
+  &:disabled {
+    cursor: not-allowed;
+    background: #888;
+    color: #111;
+  }
+}
+.h200 {
+  height: 200px;
+}
+
+.img-preview {
+  width: 200px;
+  margin-top: 10px;
+}
+
+
+.owl-theme .owl-nav [class*=owl-],.owl-theme .owl-nav [class*=owl-]:hover {
+  background: inherit;
+}
+
+.owl-carousel .owl-nav .owl-prev {
+position: absolute;
+  left: 0;
+  top: 43%;
+  background: inherit !important;
+}
+.owl-carousel .owl-nav .owl-next {
+  position: absolute;
+  right: 0;
+  top: 43%;
+  background: inherit !important;
+}
+
+@media screen and (max-width:576px) {
+  .owl-carousel .owl-nav .owl-prev img,.owl-carousel .owl-nav .owl-next img{
+    width: 31px;
+  }
+  .btn{
+    padding: 10px 32px;
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+}
